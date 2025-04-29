@@ -1,0 +1,139 @@
+
+.news-sidebar {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 20px;
+    height: 100%;
+}
+
+.sidebar-title {
+    font-weight: 700;
+    color: #212529;
+    border-bottom: 3px solid #0d6efd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.sidebar-title:after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #ffc107;
+}
+
+.news-item {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e9ecef;
+    gap: 15px;
+}
+
+.news-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.news-img {
+    width: 80px;
+    min-width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    object-fit: cover;
+    align-self: center; /* Vertical alignment */
+}
+
+.news-content {
+    flex: 1;
+}
+
+.news-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+    line-height: 1.3;
+}
+
+.news-title a {
+    color: #212529;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.news-title a:hover {
+    color: #0d6efd;
+}
+
+.news-meta {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.news-category {
+    display: inline-block;
+    background-color: #0d6efd;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.trending-badge {
+    background-color: #dc3545;
+}
+
+.news-excerpt {
+    font-size: 0.8rem;
+    color: #495057;
+    margin-bottom: 0;
+}
+
+.sidebar-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.news-tabs .nav-link {
+    color: #495057;
+    font-weight: 500;
+    border: none;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+}
+
+.news-tabs .nav-link.active {
+    color: #0d6efd;
+    background: transparent;
+    border-bottom: 2px solid #0d6efd;
+}
+
+@media (max-width: 992px) {
+    .news-img {
+        width: 60px;
+        min-width: 60px;
+        height: 60px;
+    }
+    
+    .news-item {
+        gap: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .news-sidebar {
+        margin-top: 30px;
+    }
+}

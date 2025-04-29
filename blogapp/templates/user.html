@@ -1,0 +1,514 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="TemplateMo">
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <title>BlogSpot - Blogging Website</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+
+<!-- Additional CSS Files -->
+<link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="stylesheet" href="{% static 'assets/css/templatemo-stand-blog.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+
+</head>
+   <style>
+        .carousel-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        .carousel {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-inner {
+            height: 400px; /* Adjust height as needed */
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+        }
+
+        .carousel-caption h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 6px;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 5%;
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-inner {
+                height: 300px;
+            }
+
+            .carousel-caption h1 {
+                font-size: 1.8rem;
+            }
+
+            .carousel-caption {
+                bottom: 20px;
+                width: 90%;
+            }
+        }
+    </style>
+  <style>
+        /* Sidebar video container */
+        .sidebar-video-container {
+            width: 100%;
+            height: 320px; /* Ideal height for sidebar */
+            max-width: 180px; /* Maintains 9:16 aspect ratio */
+            margin: 0 auto 20px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background-color: #000;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-video-container:hover {
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+
+        /* Video element */
+        .sidebar-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Video overlay controls */
+        .sidebar-video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar-video-container:hover .sidebar-video-overlay {
+            opacity: 1;
+        }
+
+        /* Compact controls */
+        .sidebar-video-controls {
+            padding: 10px;
+            color: white;
+        }
+
+        .sidebar-progress-container {
+            height: 2px;
+            background: rgba(255,255,255,0.2);
+            margin: 6px 0;
+            cursor: pointer;
+        }
+
+        .sidebar-progress-bar {
+            height: 100%;
+            background: #fff;
+            width: 0%;
+        }
+
+        .sidebar-control-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-btn-control {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 0.9rem;
+            padding: 2px 6px;
+        }
+
+        .sidebar-time-display {
+            font-size: 0.7rem;
+            opacity: 0.8;
+        }
+    </style>
+
+<body>
+
+
+<header>
+
+        <nav class="navbar navbar-expand-lg bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'blogapp:index' %}">
+                    <h2>Blog<span style="color: rgb(241, 110, 70);">Spot</span></h2>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blogapp:index' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blogapp:blog' %}">Blogs</a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blogapp:create' %}">Create</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blogapp:profile' user.id %}">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary" href="{% url 'Account:logout' %}">Logout</a>
+                        </li>
+
+                        <li class="nav-item">
+                           <a class="nav-link" href="{% url 'Account:login' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" href="{% url 'Account:register' %}">Register</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+ <div class="carousel-container">
+        <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="3"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="4"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="5"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="6"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="7"></button>
+            </div>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'assets/img/fashion2.jpg' %}" class="d-block w-100" alt="Nature">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'assets/img/fashion1.png' %}" class="d-block w-100" alt="Nature">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'assets/img/top-view-travel-typography.jpg' %}" class="d-block w-100" alt="Nature">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'assets/img/adventure-trip-travel-destination-hiking-nature-concept.jpg' %}" class="d-block w-100" alt="Nature">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'assets/img/education-blogs-1.jpg' %}" class="d-block w-100" alt="Nature">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'assets/img/creative.jpg' %}" class="d-block w-100" alt="Nature">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'assets/img/food.jpg' %}" class="d-block w-100" alt="Nature">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'assets/img/bloger.jpg' %}" class="d-block w-100" alt="Nature">
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+  {% if user.is_authenticated %}
+  <div class="container mt-5">
+    <h5>MY POSTS</h5>
+    <hr>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1" class="blog-posts">
+
+      {% for post in posts|slice:"0:3" %}
+      <div class="col col-lg-4 col-md-6 col-12 mb-2 blog-post">
+        <img src="{{media_url}}{{post.image}}" alt="" width="100%" height="300px">
+        <div class=" px-3 py-5 shadow">
+        <a href="{% url 'blogapp:post' post.id %}" class="text-decoration-none text-dark">
+          <span class="text-white bg-info text-center rounded-3 mt-5" style="padding: 8px;">{{post.category}}</span>
+          <h5 class="mt-4">{{post.postname}}</h5>
+        </a>
+        <form method="post" action="{% url 'blogapp:increaselikes' post.id %}">
+          {% csrf_token %}
+          <button class="float-right small" type="submit"
+            style="border: none; background: transparent; font-size: 25px;"><i
+              class="fa fa-heart text-danger"></i></button>
+        </form>
+
+        <p>{{post.content|slice:"0:100"}}...</p>
+        <p class="small text-primary">{{post.time}} </p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <a class="text-danger text-decoration-none" href="{% url 'blogapp:profile' user.id %}" style="cursor:pointer;">View All
+    >></a>
+  </div>
+  {% endif %}
+
+  <section class="blog-posts">
+    <div class="container">
+      <h3 class="mb-2" style="color: rgb(227, 73, 73); font-size: 30px; font-weight: bold;">RECENT POSTS</h3>
+      <hr>
+      <div class=" row">
+        <div class="col-lg-8">
+          <div class="all-blog-posts">
+            <div class="row">
+
+              {% for post in top_posts|slice:"0:7" %}
+              <div class="col col-lg-6 col-12 pb-2 blog-post ">
+                <img src="{{media_url}}{{post.image}}" alt="" class="img-fluid" width="100%">
+                <div class="px-3 py-5 shadow">
+                  <a href="{% url 'blogapp:post' post.id %}" class="text-decoration-none text-dark mb-3">
+                    <span class="text-white bg-info text-center rounded-3 mt-5"
+                      style="padding: 8px;">{{post.category}}</span>
+                    <h5 class="mt-4">{{post.postname}}</h5>
+                  </a>
+                  <form method="post" action="{% url 'blogapp:increaselikes' post.id %}">
+                    {% csrf_token %}
+                    <button class="float-right small" type="submit"
+                      style="border: none; background: transparent; font-size: 25px;"><i
+                        class="fa fa-heart text-danger"></i></button>
+                  </form>
+
+                  <p class="mt-2">{{post.content|slice:"0:100"}}...</p>
+                  <p class="small text-primary">{{post.time}} </p>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+                <div class="sidebar-sticky pt-3">
+                    <!-- Vertical video player -->
+                    <div class="sidebar-video-container">
+                        <video class="sidebar-video" autoplay muted loop playsinline>
+                            <source src="{% static 'assets/video/13103221_2160_3840_30fps.mp4' %}" type="video/mp4">
+                            Your browser doesn't support HTML5 video.
+
+                        </video>
+
+                        <div class="sidebar-video-overlay">
+                            <div class="sidebar-video-controls">
+                                <div class="sidebar-progress-container">
+                                    <div class="sidebar-progress-bar"></div>
+                                </div>
+                                <div class="sidebar-control-buttons">
+                                    <button class="sidebar-btn-control sidebar-play-pause">
+                                        <i class="bi bi-pause-fill"></i>
+                                    </button>
+                                    <span class="sidebar-time-display">0:00</span>
+                                    <button class="sidebar-btn-control sidebar-volume">
+                                        <i class="bi bi-volume-up-fill"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-video-container" >
+                        <video class="sidebar-video" autoplay muted loop playsinline>
+                            <source src="{% static 'assets/video/2047965-hd_1280_720_30fps.mp4' %}" type="video/mp4">
+                            Your browser doesn't support HTML5 video.
+
+                        </video>
+
+
+                        <div class="sidebar-video-overlay">
+                            <div class="sidebar-video-controls">
+                                <div class="sidebar-progress-container">
+                                    <div class="sidebar-progress-bar"></div>
+                                </div>
+                                <div class="sidebar-control-buttons">
+                                    <button class="sidebar-btn-control sidebar-play-pause">
+                                        <i class="bi bi-pause-fill"></i>
+                                    </button>
+                                    <span class="sidebar-time-display">0:00</span>
+                                    <button class="sidebar-btn-control sidebar-volume">
+                                        <i class="bi bi-volume-up-fill"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    <!-- Other sidebar content can go here -->
+                </div>
+            </div>
+        </div>
+    </div>
+      </div>
+    </div>
+  </section>
+
+
+  {% include 'footer.html' %}
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+    crossorigin="anonymous"></script>
+
+  <!-- Additional Scripts -->
+  <script src="{% static 'assets/js/custom.js' %}"></script>
+  <script src="{% static 'assets/js/owl.js' %}"></script>
+  <script src="{% static 'assets/js/slick.js' %}"></script>
+  <script src="{% static 'assets/js/isotope.js' %}"></script>
+  <script src="{% static 'assets/js/accordions.js' %}"></script>
+
+
+  <script language="text/Javascript">
+    cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+    function clearField(t) {                   //declaring the array outside of the
+      if (!cleared[t.id]) {                      // function makes it static and global
+        cleared[t.id] = 1;  // you could use true and false, but that's more typing
+        t.value = '';         // with more chance of typos
+        t.style.color = '#fff';
+      }
+    }
+
+  </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Video Player JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.sidebar-video');
+            const playPauseBtn = document.querySelector('.sidebar-play-pause');
+            const volumeBtn = document.querySelector('.sidebar-volume');
+            const progressBar = document.querySelector('.sidebar-progress-bar');
+            const timeDisplay = document.querySelector('.sidebar-time-display');
+            const progressContainer = document.querySelector('.sidebar-progress-container');
+
+            // Format time as M:SS
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+
+            // Update progress bar
+            function updateProgress() {
+                const percent = (video.currentTime / video.duration) * 100;
+                progressBar.style.width = `${percent}%`;
+                timeDisplay.textContent = formatTime(video.currentTime);
+            }
+
+            // Toggle play/pause
+            playPauseBtn.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                    playPauseBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+                } else {
+                    video.pause();
+                    playPauseBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+                }
+            });
+
+            // Toggle mute
+            volumeBtn.addEventListener('click', () => {
+                video.muted = !video.muted;
+                volumeBtn.innerHTML = video.muted ?
+                    '<i class="bi bi-volume-mute-fill"></i>' :
+                    '<i class="bi bi-volume-up-fill"></i>';
+            });
+
+            // Click to seek
+            progressContainer.addEventListener('click', (e) => {
+                const pos = (e.pageX - progressContainer.getBoundingClientRect().left) / progressContainer.offsetWidth;
+                video.currentTime = pos * video.duration;
+            });
+
+            // Update on timeupdate
+            video.addEventListener('timeupdate', updateProgress);
+
+            // Initialize when metadata loads
+            video.addEventListener('loadedmetadata', () => {
+                timeDisplay.textContent = '0:00';
+            });
+        });
+    </script>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'assets/js/user.js' %}"></script>
+</body>
+</html>

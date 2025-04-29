@@ -1,0 +1,21 @@
+{% extends 'user/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Post Details</h1>
+    <div class='card' style='width:18rem;'>
+        {% if post.image %}
+            <img src="{{ post.image.url }}" class="card-img-top img-fluid" alt="{{ post.postname }}" style="max-height: 500px; object-fit: cover;">
+        {% else %}
+            <div class="card-img-top bg-secondary text-white text-center py-5">
+                <i class="fas fa-image fa-5x"></i>
+                <p>No Image Available</p>
+            </div>
+        {% endif %}
+        <div class="card-body">
+            <p class="card-text"><b>{{ post.postname }}</b></p>
+            <p><b>{{ post.user }}</b></p>
+            <p>{{ post.content }}</p>
+        </div>
+    </div>
+{% endblock %}

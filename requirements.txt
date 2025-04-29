@@ -1,0 +1,6 @@
+
+Django==5.2
+docker==7.1.0
+mysql-connector-python==9.0.0
+pillow==10.4.0
+

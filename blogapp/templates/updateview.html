@@ -1,0 +1,21 @@
+{% extends 'user/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+        <h1>Update News</h1>
+
+
+
+        <form action=''mathod='post' enctype='multipart/form-data'>
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <input type='submit'class="btn btn-success" value='Update'>
+
+        </form>
+
+{% endblock %}

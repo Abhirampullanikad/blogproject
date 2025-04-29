@@ -1,0 +1,33 @@
+/* Add your custom styles here */
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+.btn-primary {
+    background-color: #7461f3;
+    border-color: #7461f3;
+}
+
+.btn-primary:hover {
+    background-color: #5a4ad1;
+    border-color: #5a4ad1;
+}
+
+.badge {
+    font-size: 0.8rem;
+    font-weight: 500;
+}

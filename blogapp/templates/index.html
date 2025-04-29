@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="TemplateMo">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  
+  <title>BlogSpot - Blogging Website</title>
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'assets/css/templatemo-stand-blog.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+
+  <style>
+    .news-sidebar {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 20px;
+      height: 100%;
+    }
+    
+    .sidebar-title {
+      font-weight: 700;
+      color: #212529;
+      border-bottom: 3px solid #0d6efd;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .sidebar-title:after {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: #ffc107;
+    }
+    
+    .news-item {
+      display: flex;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #e9ecef;
+      gap: 15px;
+    }
+    
+    .news-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .news-img {
+      width: 80px;
+      min-width: 80px;
+      height: 80px;
+      border-radius: 6px;
+      object-fit: cover;
+      align-self: center;
+    }
+    
+    .news-content {
+      flex: 1;
+    }
+    
+    .news-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+    
+    .news-title a {
+      color: #212529;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .news-title a:hover {
+      color: #0d6efd;
+    }
+    
+    .news-meta {
+      font-size: 0.75rem;
+      color: #6c757d;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .news-category {
+      display: inline-block;
+      background-color: #0d6efd;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    .trending-badge {
+      background-color: #dc3545;
+    }
+    
+    .news-excerpt {
+      font-size: 0.8rem;
+      color: #495057;
+      margin-bottom: 0;
+    }
+    
+    .sidebar-footer {
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    .news-tabs .nav-link {
+      color: #495057;
+      font-weight: 500;
+      border: none;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+    }
+    
+    .news-tabs .nav-link.active {
+      color: #0d6efd;
+      background: transparent;
+      border-bottom: 2px solid #0d6efd;
+    }
+    
+    .carousel-container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 15px;
+    }
+
+    .carousel {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .carousel-inner {
+      height: 400px;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .carousel-caption {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 8px;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+    }
+
+    .carousel-caption h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .carousel-indicators button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin: 0 6px;
+    }
+
+    .sidebar-video-container {
+      width: 100%;
+      height: 320px;
+      max-width: 180px;
+      margin: 0 auto 20px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      background-color: #000;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 992px) {
+      .news-img {
+        width: 60px;
+        min-width: 60px;
+        height: 60px;
+      }
+      
+      .news-item {
+        gap: 12px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .news-sidebar {
+        margin-top: 30px;
+      }
+      
+      .carousel-inner {
+        height: 300px;
+      }
+
+      .carousel-caption h1 {
+        font-size: 1.8rem;
+      }
+
+      .carousel-caption {
+        bottom: 20px;
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  {% include 'header.html' %}
+
+  <div class="carousel-container">
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
+      </div>
+
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'assets/img/fashion2.jpg' %}" class="d-block w-100" alt="Fashion">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'assets/img/fashion1.png' %}" class="d-block w-100" alt="Fashion">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'assets/img/top-view-travel-typography.jpg' %}" class="d-block w-100" alt="Travel">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'assets/img/adventure-trip-travel-destination-hiking-nature-concept.jpg' %}" class="d-block w-100" alt="Adventure">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'assets/img/education-blogs-1.jpg' %}" class="d-block w-100" alt="Education">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'assets/img/creative.jpg' %}" class="d-block w-100" alt="Creative">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'assets/img/food.jpg' %}" class="d-block w-100" alt="Food">
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+
+      <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+  {% if user.is_authenticated %}
+  <div class="container mt-5">
+    <h5>MY POSTS</h5>
+    <hr>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 blog-posts">
+      {% for post in posts|slice:"0:3" %}
+      <div class="col blog-post">
+        <div class="card h-100">
+          <img src="{{ media_url }}{{ post.image }}" class="card-img-top" alt="{{ post.postname }}" style="height: 300px; object-fit: cover;">
+          <div class="card-body">
+            <a href="{% url 'blogapp:post' post.id %}" class="text-decoration-none text-dark">
+              <span class="badge bg-info mb-3">{{ post.category }}</span>
+              <h5 class="card-title">{{ post.postname }}</h5>
+            </a>
+            <form method="post" action="{% url 'blogapp:increaselikes' post.id %}" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-link p-0 float-end" style="font-size: 1.5rem;">
+                <i class="fa fa-heart text-danger"></i>
+              </button>
+            </form>
+            <p class="card-text">{{ post.content|slice:"0:100" }}...</p>
+            <p class="small text-primary">{{ post.time }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="mt-3">
+      <a href="{% url 'blogapp:profile' user.id %}" class="text-danger text-decoration-none">View All &gt;&gt;</a>
+    </div>
+  </div>
+  {% endif %}
+
+  <section class="blog-posts">
+    <div class="container">
+      <h3 class="mb-4" style="color: rgb(227, 73, 73); font-size: 30px; font-weight: bold;">RECENT POSTS</h3>
+      <hr>
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="all-blog-posts">
+            <div class="row g-4">
+              {% for post in top_posts|slice:"0:7" %}
+              <div class="col-12 col-md-6 blog-post">
+                <div class="card h-100">
+                  <img src="{{ media_url }}{{ post.image }}" class="card-img-top" alt="{{ post.postname }}">
+                  <div class="card-body">
+                    <a href="{% url 'blogapp:post' post.id %}" class="text-decoration-none text-dark">
+                      <span class="badge bg-info mb-3">{{ post.category }}</span>
+                      <h5 class="card-title">{{ post.postname }}</h5>
+                    </a>
+                    <form method="post" action="{% url 'blogapp:increaselikes' post.id %}" class="d-inline">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-link p-0 float-end" style="font-size: 1.5rem;">
+                        <i class="fa fa-heart text-danger"></i>
+                      </button>
+                    </form>
+                    <p class="card-text">{{ post.content|slice:"0:100" }}...</p>
+                    <p class="small text-primary">{{ post.time }}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="news-sidebar sticky-top" style="top: 20px; max-height: 100vh; overflow-y: auto;">
+              <ul class="nav nav-tabs news-tabs pt-3" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="latest-tab" data-bs-toggle="tab" data-bs-target="#latest" type="button" role="tab" aria-controls="latest" aria-selected="true">Latest</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="popular-tab" data-bs-toggle="tab" data-bs-target="#popular" type="button" role="tab" aria-controls="popular" aria-selected="false">Popular</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="trending-tab" data-bs-toggle="tab" data-bs-target="#trending" type="button" role="tab" aria-controls="trending" aria-selected="false">Trending</button>
+                </li>
+              </ul>
+          
+              <div class="tab-content pt-2">
+                <div class="tab-pane fade show active" id="latest" role="tabpanel" aria-labelledby="latest-tab">
+                  <h3 class="sidebar-title h5">Latest News</h3>
+              
+                  {% for news in newses %}
+                    <div class="news-item">
+                      <img src="{{ news.image.url }}" alt="{{ news.title }}" class="news-img" loading="lazy">
+                      <div class="news-content">
+                        <div class="news-meta">
+                          <span class="news-category">{{ news.type_of_news }}</span>
+                          <span><i class="far fa-clock me-1"></i> {{ news.time }}</span>
+                        </div>
+                        <h4 class="news-title h6">
+                          {{ news.title }}
+                        </h4>
+                        <p class="news-excerpt">{{ news.description }}</p>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+                
+                <div class="tab-pane fade" id="popular" role="tabpanel" aria-labelledby="popular-tab">
+                  <h3 class="sidebar-title h5">Popular News</h3>
+                  <!-- Add popular news content here -->
+                  <p class="text-muted">No popular news at the moment.</p>
+                </div>
+                
+                <div class="tab-pane fade" id="trending" role="tabpanel" aria-labelledby="trending-tab">
+                  <h3 class="sidebar-title h5">Trending News</h3>
+                  <!-- Add trending news content here -->
+                  <p class="text-muted">No trending news at the moment.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <style>
+            /* Custom styles for sticky scrolling */
+            .news-sidebar {
+              position: sticky;
+              top: 20px;
+              max-height: 100vh;
+              overflow-y: auto;
+              scrollbar-width: thin;
+              padding-bottom: 20px;
+            }
+            
+            /* Smooth scrolling behavior */
+            .news-sidebar {
+              scroll-behavior: smooth;
+            }
+            
+            /* Custom scrollbar for webkit browsers */
+            .news-sidebar::-webkit-scrollbar {
+              width: 5px;
+            }
+            
+            .news-sidebar::-webkit-scrollbar-track {
+              background: #f1f1f1;
+            }
+            
+            .news-sidebar::-webkit-scrollbar-thumb {
+              background: #888;
+              border-radius: 5px;
+            }
+            
+            .news-sidebar::-webkit-scrollbar-thumb:hover {
+              background: #555;
+            }
+          </style>
+        
+    </div>
+  </section>
+
+  {% include 'footer.html' %}
+
+  <!-- JavaScript Libraries -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  
+  <!-- Additional Scripts -->
+  <script src="{% static 'assets/js/custom.js' %}"></script>
+  <script src="{% static 'assets/js/owl.js' %}"></script>
+  <script src="{% static 'assets/js/slick.js' %}"></script>
+  <script src="{% static 'assets/js/isotope.js' %}"></script>
+  <script src="{% static 'assets/js/accordions.js' %}"></script>
+  <script src="{% static 'assets/js/user.js' %}"></script>
+
+  <script>
+
+
+        if (progressContainer) {
+          progressContainer.addEventListener('click', (e) => {
+            const pos = (e.pageX - progressContainer.getBoundingClientRect().left) / progressContainer.offsetWidth;
+            video.currentTime = pos * video.duration;
+          });
+        }
+
+        video.addEventListener('timeupdate', updateProgress);
+        video.addEventListener('loadedmetadata', () => {
+          if (timeDisplay) {
+            timeDisplay.textContent = '0:00';
+          }
+        });
+    
+  </script>
+</body>
+</html>
