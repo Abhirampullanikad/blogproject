@@ -43,7 +43,15 @@ Edit
 - [Docker](https://www.docker.com/products/docker-desktop)
 - [Docker Compose](https://docs.docker.com/compose/)
 
----
+
+📃 License
+This project is licensed under the MIT License. See LICENSE file for details.
+
+🙋‍♂️ Author
+Abhiram Pullanikad
+📫 GitHub
+
+
 
 ### 1. Clone the repository
 
@@ -82,10 +90,3 @@ To stop containers:
 
 
 docker-compose down
-📃 License
-This project is licensed under the MIT License. See LICENSE file for details.
-
-🙋‍♂️ Author
-Abhiram Pullanikad
-📫 GitHub
-
